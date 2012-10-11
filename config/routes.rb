@@ -1,6 +1,12 @@
 DeviseApp::Application.routes.draw do
   devise_for :users
-  root :to => "users#index"
+  resources :users
+  resources :posts
+  resources :users do
+    resources :posts
+  end
+  match "posts/:post_id/destroy" => "posts#destroy", :as => :posts_destroy
+  root :to => "posts#index"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

@@ -1,0 +1,6 @@
+<%= render :partial => "header" %>
+<div align="center">
+<%= render :partial => "form", :locals => {:user => current_user, :post => current_user.posts.build } %>
+<br><br>
+<%= render :partial => "footer" %>
+</div>

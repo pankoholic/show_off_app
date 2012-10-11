@@ -1,0 +1,14 @@
+<%= render :partial => "header" %>
+<div align="center">
+<h1><%= @user.name %>'s posts:</h1><br>
+<% @user.posts.each do |post| %>
+    <h2><%= post.title %></h2>
+    <%= post.body %>
+    <% if current_user.id == post.user_id %>
+        <%= button_to "X", posts_destroy_path(post) %>
+    <% end %>
+    <p>_______________________________________</p>
+    <br><br><br>
+<% end %>
+<%= render :partial => "footer" %>
+</div>

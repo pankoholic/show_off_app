@@ -1,5 +1,7 @@
+<%= render :partial => "header" %>
 <div align="center">
-<p>it's working</p>
-
-<%= button_to "Sign out", destroy_user_session_path %>
+<% @users.each do |user| %>
+      <%= link_to user.name, user %><br>
+<% end %>
+<%= render :partial => "footer" %>
 </div>

@@ -1,0 +1,11 @@
+<%= render :partial => "header" %>
+<div align="center">
+  <h1><%= @post.title %></h1>
+  <%= @post.body %>
+  <p>Belongs to: <%= link_to User.find(@post.user_id).name, User.find(@post.user_id)  %></p>
+  <% if current_user.id == @post.user_id %>
+  <%= button_to "X", posts_destroy_path(@post) %>
+  <% end %>
+  <br><br>
+  <%= render :partial => "footer" %>
+</div>

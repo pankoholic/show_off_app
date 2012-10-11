@@ -1,0 +1,11 @@
+<%= render :partial => "header" %>
+<div align="center">
+<% @posts.each do |post| %>
+    <h1><%= link_to post.title, post %></h1>
+    <%= post.body %>
+    <p>Belongs to: <%= link_to User.find(post.user_id).name, User.find(post.user_id)  %></p><br><br>
+<% end %>
+<%= render :partial => "form", :locals => {:user => current_user, :post => current_user.posts.build } %>
+<br><br>
+<%= render :partial => "footer" %>
+</div>
