@@ -5,7 +5,11 @@ DeviseApp::Application.routes.draw do
   resources :users do
     resources :posts
   end
+  resources :posts do
+    resources :comments
+  end
   match "posts/:post_id/destroy" => "posts#destroy", :as => :posts_destroy
+  match "posts/:post_id/comments/:id" => "comments#destroy", :as => :comments_destroy
   root :to => "posts#index"
   # The priority is based upon order of creation:
   # first created -> highest priority.

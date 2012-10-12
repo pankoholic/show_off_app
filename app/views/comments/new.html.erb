@@ -1,0 +1,5 @@
+<%= form_for([@post, @comment]) do |f| %>
+    <%= f.label :body %>
+    <%= f.text_area :body, :rows => "3" %>
+    <%= f.submit :post_comment %>
+<% end %>

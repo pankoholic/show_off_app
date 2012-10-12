@@ -7,5 +7,15 @@
   <%= button_to "X", posts_destroy_path(@post) %>
   <% end %>
   <br><br>
+  <p>Comments:</p><br>
+  <% @post.comments.each do |comment| %>
+    <b><%= link_to User.find(comment.user_id).name,User.find(comment.user_id) %></b>: <br><%= comment.body %>
+    <% if current_user.id == comment.user_id %>
+              <%= button_to "X", comments_destroy_path(@post,comment) %>
+    <% end %>
+    <br>
+    <p>________________________________________</p>
+  <% end %>
+  <%= render :partial => "commentform", :locals => {:post => @post, :comment => @post.comments.build } %>
   <%= render :partial => "footer" %>
 </div>
