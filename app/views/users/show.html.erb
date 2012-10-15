@@ -1,4 +1,7 @@
 <%= render :partial => "header" %>
+<% if not current_user.id == @user.id %>
+    <div align="right"><%= button_to "New message", "#" %></div>
+<% end %>
 <div align="center">
 <% if current_user.id == @user.id %>
     <%= render :partial => "form", :locals => {:user => current_user, :post => current_user.posts.build } %>

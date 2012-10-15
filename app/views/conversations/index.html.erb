@@ -1,0 +1,9 @@
+<%= render :partial => "header" %>
+<div align="center">
+<% @conversations.each do |conversation| %>
+    <% if current_user.id == conversation.user1.to_i || current_user.id == conversation.user2.to_i %>
+        <%= link_to "Conversation between #{User.find(conversation.user1).name} and #{User.find(conversation.user2).name}", conversation %><br>
+    <% end %>
+<% end %>
+<%= render :partial => "footer" %>
+</div>

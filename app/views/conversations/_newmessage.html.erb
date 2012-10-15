@@ -1,0 +1,4 @@
+<%= form_for([conversation, message]) do |f| %>
+    <%= f.text_area :content, :rows => "3" %>
+    <%= f.submit :send %>
+<% end %>

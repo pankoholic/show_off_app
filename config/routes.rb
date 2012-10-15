@@ -1,15 +1,24 @@
 DeviseApp::Application.routes.draw do
   devise_for :users
+
   resources :users
   resources :posts
+  resources :conversations
+
   resources :users do
     resources :posts
+    resources :conversations
+  end
+  resources :conversations do
+    resources :messages
   end
   resources :posts do
     resources :comments
   end
+
   match "posts/:post_id/destroy" => "posts#destroy", :as => :posts_destroy
   match "posts/:post_id/comments/:id" => "comments#destroy", :as => :comments_destroy
+
   root :to => "posts#index"
   # The priority is based upon order of creation:
   # first created -> highest priority.

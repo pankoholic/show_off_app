@@ -1,0 +1,78 @@
+        new_user_session 	GET    /users/sign_in(.:format)                 	devise/sessions#new
+            user_session 	POST   /users/sign_in(.:format)                 	devise/sessions#create
+    destroy_user_session	DELETE /users/sign_out(.:format)                	devise/sessions#destroy
+           user_password 	POST   /users/password(.:format)                	devise/passwords#create
+       new_user_password 	GET    /users/password/new(.:format)			devise/passwords#new
+      edit_user_password 	GET    /users/password/edit(.:format)			devise/passwords#edit
+                       		PUT    /users/password(.:format)             		devise/passwords#update
+cancel_user_registration 	GET    /users/cancel(.:format)                		devise/registrations#cancel
+       user_registration 	POST   /users(.:format)                         	devise/registrations#create
+   new_user_registration 	GET    /users/sign_up(.:format)                 	devise/registrations#new
+  edit_user_registration 	GET    /users/edit(.:format)                    	devise/registrations#edit
+                         	PUT    /users(.:format)                         	devise/registrations#update
+                         	DELETE /users(.:format)                         	devise/registrations#destroy
+                   users 	GET    /users(.:format)                         	users#index
+                         	POST   /users(.:format)                         	users#create
+                new_user 	GET    /users/new(.:format)                     	users#new
+               edit_user 	GET    /users/:id/edit(.:format)                	users#edit
+                    user 	GET    /users/:id(.:format)                     	users#show
+                         	PUT    /users/:id(.:format)                     	users#update
+                         	DELETE /users/:id(.:format)                     	users#destroy
+                   posts 	GET    /posts(.:format)                         	posts#index
+                         	POST   /posts(.:format)                         	posts#create
+                new_post 	GET    /posts/new(.:format)                     	posts#new
+               edit_post 	GET    /posts/:id/edit(.:format)                	posts#edit
+                    post 	GET    /posts/:id(.:format)                     	posts#show
+                         	PUT    /posts/:id(.:format)                     	posts#update
+                         	DELETE /posts/:id(.:format)                     	posts#destroy
+                messages 	GET    /messages(.:format)                      	messages#index
+                         	POST   /messages(.:format)                      	messages#create
+             new_message 	GET    /messages/new(.:format)                 		messages#new
+            edit_message 	GET    /messages/:id/edit(.:format)             	messages#edit
+                 message 	GET    /messages/:id(.:format)                  	messages#show
+                         	PUT    /messages/:id(.:format)                  	messages#update
+                         	DELETE /messages/:id(.:format)                  	messages#destroy
+              user_posts 	GET    /users/:user_id/posts(.:format)          	posts#index
+                         	POST   /users/:user_id/posts(.:format)          	posts#create
+           new_user_post 	GET    /users/:user_id/posts/new(.:format)      	posts#new
+          edit_user_post 	GET    /users/:user_id/posts/:id/edit(.:format)		posts#edit
+               user_post 	GET    /users/:user_id/posts/:id(.:format)      	posts#show
+                         	PUT    /users/:user_id/posts/:id(.:format)      	posts#update
+                         	DELETE /users/:user_id/posts/:id(.:format)      	posts#destroy
+           user_messages 	GET    /users/:user_id/messages(.:format)       	messages#index
+                         	POST   /users/:user_id/messages(.:format)       	messages#create
+        new_user_message 	GET    /users/:user_id/messages/new(.:format)   	messages#new
+       edit_user_message 	GET    /users/:user_id/messages/:id/edit(.:format) 	messages#edit
+            user_message 	GET    /users/:user_id/messages/:id(.:format)      	messages#show
+                         	PUT    /users/:user_id/messages/:id(.:format)      	messages#update
+                         	DELETE /users/:user_id/messages/:id(.:format)      	messages#destroy
+                         	GET    /users(.:format)                            	users#index
+                         	POST   /users(.:format)                            	users#create
+                         	GET    /users/new(.:format)                        	users#new
+                         	GET    /users/:id/edit(.:format)                   	users#edit
+                         	GET    /users/:id(.:format)                        	users#show
+                         	PUT    /users/:id(.:format)                        	users#update
+                         	DELETE /users/:id(.:format)                        	users#destroy
+           post_comments 	GET    /posts/:post_id/comments(.:format)          	comments#index
+                         	POST   /posts/:post_id/comments(.:format)          	comments#create
+        new_post_comment 	GET    /posts/:post_id/comments/new(.:format)      	comments#new
+       edit_post_comment 	GET    /posts/:post_id/comments/:id/edit(.:format) 	comments#edit
+            post_comment 	GET    /posts/:post_id/comments/:id(.:format)      	comments#show
+                         	PUT    /posts/:post_id/comments/:id(.:format)      	comments#update
+                         	DELETE /posts/:post_id/comments/:id(.:format)      	comments#destroy
+                         	GET    /posts(.:format)                            	posts#index
+                         	POST   /posts(.:format)                            	posts#create
+                         	GET    /posts/new(.:format)                        	posts#new
+                         	GET    /posts/:id/edit(.:format)                   	posts#edit
+                         	GET    /posts/:id(.:format)                        	posts#show
+                         	PUT    /posts/:id(.:format)                        	posts#update
+                         	DELETE /posts/:id(.:format)                        	posts#destroy
+           posts_destroy               /posts/:post_id/destroy(.:format)           	posts#destroy
+        comments_destroy               /posts/:post_id/comments/:id(.:format)      	comments#destroy
+                    root               /                                           	posts#index
+
+
+
+
+
+<%= render :partial => "formnewmessage", :locals => { :user => @user, :message => @user.messages.build } %>
