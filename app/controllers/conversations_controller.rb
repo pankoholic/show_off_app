@@ -1,18 +1,15 @@
 class ConversationsController < ApplicationController
   before_filter :authenticate_user!
   def index
-    Conversation.all.each do |conversation|
-      if conversation.users.split(",").include?(current_user.id.to_s)
-        @conversation = conversation
-        @link = ""
-        conversation.users.split(",").each do |i|
-          user = User.find(i.to_i)
-          @link += user.name + ", "
-        end
-        @link = @link.chomp(", ")
-      else
-        @link = "You don't have any conversations, yet."
+    @conversations = Conversation.all
+    @conversations.each do |conversation|
+      conversation.name = ""
+      conversation.users.split(",").each do |i|
+        user = User.find(i.to_i)
+        conversation.name +=   user.name + ", "
       end
+        conversation.name = conversation.name.chomp(", ")
+        conversation.save
     end
   end
   def show
@@ -23,20 +20,20 @@ class ConversationsController < ApplicationController
       redirect_to user_conversations_path(current_user)
     end
   end
-  def new
-    @conversation = Conversation.new
-  end
-  def create
-    @conversation.users = ""
-    @conversation.users += current_user.id.to_s
-    @conversation.save
-    redirect_to user_conversations_path(current_user)
-  end
   def leave
     @conversation = Conversation.find(params[:id])
     user_string = @conversation.users.split(",")
     user_string.delete(current_user.id.to_s)
     @conversation.users = user_string.join(",")
+    @conversation.save
+    redirect_to user_conversations_path(current_user)
+  end
+  def start
+    @conversation = Conversation.new
+    @user = User.find(params[:id])
+    @conversation.users = ""
+    @conversation.users += current_user.id.to_s + ","
+    @conversation.users += @user.id.to_s
     @conversation.save
     redirect_to user_conversations_path(current_user)
   end

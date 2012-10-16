@@ -1,6 +1,6 @@
 <%= render :partial => "header" %>
 <% if not current_user.id == @user.id %>
-    <div align="right"><%= button_to "New message", "#" %></div>
+    <div align="right"><%= button_to "Start a conversation", conversations_start_path(:user => @user) %></div>
 <% end %>
 <div align="center">
 <% if current_user.id == @user.id %>

@@ -19,6 +19,7 @@ DeviseApp::Application.routes.draw do
   match "posts/:post_id/destroy" => "posts#destroy", :as => :posts_destroy
   match "posts/:post_id/comments/:id" => "comments#destroy", :as => :comments_destroy
   match "conversations/:id/leave" => "conversations#leave", :as => :conversations_leave
+  match "users/:id/start" => "conversations#start", :as => :conversations_start
 
   root :to => "posts#index"
   # The priority is based upon order of creation:

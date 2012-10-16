@@ -1,9 +1,9 @@
 <%= render :partial => "header" %>
 <div align="center">
-<% if @link == "You don't have any conversations, yet. Start a new one?" %>
-  <%= link_to @link, "#" %><br>
-<% else %>
-  <%= link_to @link, @conversation %>
+<% @conversations.each do |conversation| %>
+  <% if conversation.users.split(",").include?(current_user.id.to_s) %>
+    <%= link_to conversation.name, conversation %><br>
+  <% end %>
 <% end %>
 <br><br>
 <br><br><br><%= render :partial => "footer" %>
