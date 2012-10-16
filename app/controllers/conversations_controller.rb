@@ -34,7 +34,15 @@ class ConversationsController < ApplicationController
     @conversation.users = ""
     @conversation.users += current_user.id.to_s + ","
     @conversation.users += @user.id.to_s
-    @conversation.save
+    test_array = Array.new
+    Conversation.all.each do |conversation|
+      test_array << conversation.users
+    end
+    test_string1 = current_user.id.to_s + "," + @user.id.to_s
+    test_string2 = @user.id.to_s + "," + current_user.id.to_s
+    if not test_array.include?(test_string1) || test_array.include?(test_string2)
+      @conversation.save
+    end
     redirect_to user_conversations_path(current_user)
   end
 end

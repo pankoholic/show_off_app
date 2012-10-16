@@ -7,6 +7,13 @@ class UsersController < ApplicationController
   end
   def show
     @user = User.find(params[:id])
+    @converstaions = Conversation.all
+    @test_array = Array.new
+    @converstaions.each do |conversation|
+      @test_array << conversation.users
+    end
+    @test_string1 = current_user.id.to_s + "," + @user.id.to_s
+    @test_string2 = @user.id.to_s + "," + current_user.id.to_s
   end
 
   private
