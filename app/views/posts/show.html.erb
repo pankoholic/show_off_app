@@ -3,14 +3,14 @@
   <h1><%= @post.title %></h1>
   <%= @post.body %>
   <p>Belongs to: <%= link_to User.find(@post.user_id).name, User.find(@post.user_id)  %></p>
-  <% if current_user.id == @post.user_id %>
+  <% if current_user.id == @post.user_id || current_user.admin?%>
   <%= button_to "X", posts_destroy_path(@post) %>
   <% end %>
   <br><br>
   <p>Comments:</p><br>
   <% @post.comments.each do |comment| %>
     <b><%= link_to User.find(comment.user_id).name,User.find(comment.user_id) %></b>: <br><%= comment.body %>
-    <% if current_user.id == comment.user_id %>
+    <% if current_user.id == comment.user_id || current_user.admin?%>
               <%= button_to "X", comments_destroy_path(@post,comment) %>
     <% end %>
     <br>

@@ -32,4 +32,12 @@ class ConversationsController < ApplicationController
     @conversation.save
     redirect_to user_conversations_path(current_user)
   end
+  def leave
+    @conversation = Conversation.find(params[:id])
+    user_string = @conversation.users.split(",")
+    user_string.delete(current_user.id.to_s)
+    @conversation.users = user_string.join(",")
+    @conversation.save
+    redirect_to user_conversations_path(current_user)
+  end
 end

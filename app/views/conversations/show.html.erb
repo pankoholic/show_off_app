@@ -3,6 +3,7 @@
   <% @messages.each do |message| %>
     <b><%= link_to User.find(message.user_id).name,User.find(message.user_id) %>: </b><%= message.content %><br>
   <% end %>
-    <%= render :partial => "newmessage", :locals => {:conversation => @conversation, :message => @conversation.messages.build } %>
+  <%= link_to "Leave conversation", conversations_leave_path(@conversation) %>
+  <%= render :partial => "newmessage", :locals => {:conversation => @conversation, :message => @conversation.messages.build } %>
 <%= render :partial => "footer" %>
 </div>

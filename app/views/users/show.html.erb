@@ -6,7 +6,7 @@
 <% if current_user.id == @user.id %>
     <%= render :partial => "form", :locals => {:user => current_user, :post => current_user.posts.build } %>
 <% end %>
-<h1><%= @user.name %>'s posts:</h1><br>
+<h1><%= @user.name %>'s posts:</h1>
 <% @user.posts.each do |post| %>
     <h2><%= post.title %></h2>
     <%= post.body %>
