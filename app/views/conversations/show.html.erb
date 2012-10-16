@@ -1,10 +1,8 @@
 <%= render :partial => "header" %>
 <div align="center">
-<% if current_user.id == @conversation.user1.to_i || current_user.id == @conversation.user2.to_i %>
-    <% @messages.each do |message| %><br>
-        <b><%= User.find(message.user_id).name %>: </b><%= message.content %><br>
-    <% end %>
+  <% @messages.each do |message| %>
+    <b><%= link_to User.find(message.user_id).name,User.find(message.user_id) %>: </b><%= message.content %><br>
+  <% end %>
     <%= render :partial => "newmessage", :locals => {:conversation => @conversation, :message => @conversation.messages.build } %>
-<% end %>
 <%= render :partial => "footer" %>
 </div>

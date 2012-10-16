@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121015174534) do
+ActiveRecord::Schema.define(:version => 20121015232900) do
 
   create_table "comments", :force => true do |t|
     t.decimal  "user_id"
@@ -21,12 +21,16 @@ ActiveRecord::Schema.define(:version => 20121015174534) do
     t.datetime "updated_at"
   end
 
-  create_table "conversations", :force => true do |t|
-    t.text     "user2"
-    t.text     "user1"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+# Could not dump table "conversations" because of following StandardError
+#   Unknown type 'array' for column 'users'
+
+  create_table "conversations_users", :id => false, :force => true do |t|
+    t.integer "conversation_id"
+    t.integer "user_id"
   end
+
+  add_index "conversations_users", ["conversation_id", "user_id"], :name => "index_conversations_users_on_conversation_id_and_user_id"
+  add_index "conversations_users", ["user_id", "conversation_id"], :name => "index_conversations_users_on_user_id_and_conversation_id"
 
   create_table "messages", :force => true do |t|
     t.text     "content"

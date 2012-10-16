@@ -1,5 +1,5 @@
 <p>Hello, <%= current_user.name %></p>
 <%= link_to "Home", root_path %>
-<%= link_to "Messages", user_messages_path(current_user) %>
+<%= link_to "Messages", user_conversations_path(current_user) %>
 <%= link_to "Edit", edit_user_registration_path, :method => :get %>
 <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>

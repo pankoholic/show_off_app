@@ -1,14 +1,25 @@
 class ConversationsController < ApplicationController
   before_filter :authenticate_user!
   def index
-    @conversations = Conversation.all
+    Conversation.all.each do |conversation|
+      if conversation.users.split(",").include?(current_user.id.to_s)
+        @conversation = conversation
+        @link = ""
+        conversation.users.split(",").each do |i|
+          user = User.find(i.to_i)
+          @link += user.name + ", "
+        end
+        @link = @link.chomp(", ")
+      else
+        @link = "You don't have any conversations, yet."
+      end
+    end
   end
   def show
     @conversation = Conversation.find(params[:id])
-    if current_user.id == @conversation.user1.to_i || current_user.id == @conversation.user2.to_i
+    if @conversation.users.split(",").include?(current_user.id.to_s)
       @messages = @conversation.messages
     else
-      flash[:notice] = "Don't try to watch someone else conversations"
       redirect_to user_conversations_path(current_user)
     end
   end
@@ -16,7 +27,9 @@ class ConversationsController < ApplicationController
     @conversation = Conversation.new
   end
   def create
-    @conversation.user1 = current_user.id
-    @conversation.user2 =
+    @conversation.users = ""
+    @conversation.users += current_user.id.to_s
+    @conversation.save
+    redirect_to user_conversations_path(current_user)
   end
 end

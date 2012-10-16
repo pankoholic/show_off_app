@@ -7,5 +7,5 @@
 <% end %>
 <%= render :partial => "form", :locals => {:user => current_user, :post => current_user.posts.build } %>
 <br><br>
-<%= render :partial => "footer" %>
+<%= current_user.id.class %>
 </div>
